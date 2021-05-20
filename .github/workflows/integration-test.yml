@@ -1,4 +1,4 @@
-name: test-unit
+name: integration-unit
 on:
   push:
     branches:
@@ -47,17 +47,19 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.base.sha }}
           path: __base
+      - name: Docker Compose
+        run: (test -f ./dev/docker-compose.integration-test.yml && docker-compose -f ./dev/docker-compose.integration-test.yml up -d && docker ps && docker-compose -f ./dev/docker-compose.integration-test.yml logs) || echo "::warning ::Missing ./dev/docker-compose.integration-test.yml file"
       - name: Run test for base code
         if: matrix.go-version == '1.16.x' && env.RUN_BASE_COVERAGE == 'on' && steps.benchmark-base.outputs.cache-hit != 'true' && github.event.pull_request.base.sha != ''
         run: |
           cd __base
-          make | grep test-unit && (make test-unit && go tool cover -func=./unit.coverprofile | sed -e 's/.go:[0-9]*:\t/.go\t/g' | sed -e 's/\t\t*/\t/g'  > ../unit-base.txt) || echo "No test-unit in base"
+          make | grep test-integration && (make test-integration && go tool cover -func=./integration.coverprofile | sed -e 's/.go:[0-9]*:\t/.go\t/g' | sed -e 's/\t\t*/\t/g'  > ../integration-base.txt) || echo "No test-integration in base"
       - name: Test
         id: test
         run: |
-          make test-unit
-          go tool cover -func=./unit.coverprofile | sed -e 's/.go:[0-9]*:\t/.go\t/g' | sed -e 's/\t\t*/\t/g'  > unit.txt
-          OUTPUT=$(test -e unit-base.txt && (diff unit-base.txt unit.txt || exit 0) || cat unit.txt)
+          make test-integration
+          go tool cover -func=./integration.coverprofile | sed -e 's/.go:[0-9]*:\t/.go\t/g' | sed -e 's/\t\t*/\t/g'  > integration.txt
+          OUTPUT=$(test -e integration-base.txt && (diff integration-base.txt integration.txt || exit 0) || cat integration.txt)
           OUTPUT="${OUTPUT//'%'/'%25'}"
           OUTPUT="${OUTPUT//$'\n'/'%0A'}"
           OUTPUT="${OUTPUT//$'\r'/'%0D'}"
@@ -66,7 +68,7 @@ jobs:
           echo "::set-output name=total::$TOTAL"
       - name: Store base coverage
         if: ${{ github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main' }}
-        run: cp unit.txt unit-base.txt
+        run: cp integration.txt integration-base.txt
       - name: Comment Test Coverage
         if: matrix.go-version == '1.16.x'
         uses: marocchino/sticky-pull-request-comment@v2
@@ -87,5 +89,5 @@ jobs:
         if: matrix.go-version == '1.16.x'
         uses: codecov/codecov-action@v1
         with:
-          file: ./unit.coverprofile
-          flags: unittests
+          file: ./integration.coverprofile
+          flags: integrationtests
