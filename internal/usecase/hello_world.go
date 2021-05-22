@@ -16,6 +16,7 @@ type helloDeps interface {
 	GreetingMaker() greeting.Maker
 }
 
+// HelloWorld creates use case interactor.
 func HelloWorld(deps helloDeps) usecase.IOInteractor {
 	type helloOutput struct {
 		Message string `json:"message"`

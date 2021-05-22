@@ -1,3 +1,4 @@
+// Package ui provides application web user interface.
 package ui
 
 import (
@@ -9,8 +10,10 @@ import (
 	"github.com/vearutop/statigz/brotli"
 )
 
+// Static serves static assets.
 var Static http.Handler
 
+// nolint:gochecknoinits
 func init() {
 	if _, err := os.Stat("./resources/static"); err == nil {
 		// path/to/whatever exists
@@ -20,6 +23,7 @@ func init() {
 	}
 }
 
+// Index serves index page of the application.
 func Index() http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		Static.ServeHTTP(w, r)

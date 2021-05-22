@@ -1,2 +1,2 @@
-// Package platform provides domain-specific application and resources.
+// Package infra provides application resources and domain implementation.
 package infra

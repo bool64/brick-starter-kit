@@ -4,6 +4,9 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"log"
+	"os"
+
 	"github.com/bool64/brick"
 	"github.com/bool64/brick-template/internal/infra"
 	"github.com/bool64/brick-template/internal/infra/nethttp"
@@ -11,8 +14,6 @@ import (
 	"github.com/bool64/brick/config"
 	"github.com/bool64/dev/version"
 	"github.com/swaggest/assertjson"
-	"log"
-	"os"
 )
 
 func main() {
