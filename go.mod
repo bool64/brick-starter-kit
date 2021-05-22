@@ -6,7 +6,7 @@ require (
 	contrib.go.opencensus.io/exporter/jaeger v0.2.1
 	github.com/bool64/brick v0.0.2
 	github.com/bool64/ctxd v0.1.5
-	github.com/bool64/dev v0.1.31-0.20210522081934-a1edf5a68112
+	github.com/bool64/dev v0.1.31
 	github.com/bool64/httpdog v0.1.7
 	github.com/bool64/httptestbench v0.1.1
 	github.com/bool64/shared v0.1.3
