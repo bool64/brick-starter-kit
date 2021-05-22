@@ -78,8 +78,8 @@ github.com/bool64/dev v0.1.25/go.mod h1:cTHiTDNc8EewrQPy3p1obNilpMpdmlUesDkFTF2z
 github.com/bool64/dev v0.1.27/go.mod h1:cTHiTDNc8EewrQPy3p1obNilpMpdmlUesDkFTF2zRWU=
 github.com/bool64/dev v0.1.28/go.mod h1:cTHiTDNc8EewrQPy3p1obNilpMpdmlUesDkFTF2zRWU=
 github.com/bool64/dev v0.1.30/go.mod h1:cTHiTDNc8EewrQPy3p1obNilpMpdmlUesDkFTF2zRWU=
-github.com/bool64/dev v0.1.31 h1:mMhi6I+k1LTEcX7jMJv6P3JiRSl0xOeEZN6+/DKX9MQ=
-github.com/bool64/dev v0.1.31/go.mod h1:cTHiTDNc8EewrQPy3p1obNilpMpdmlUesDkFTF2zRWU=
+github.com/bool64/dev v0.1.32 h1:/9dpNGF/73diJzQxZS2hOxOPrsbTyLhr0VrQztylSKY=
+github.com/bool64/dev v0.1.32/go.mod h1:cTHiTDNc8EewrQPy3p1obNilpMpdmlUesDkFTF2zRWU=
 github.com/bool64/httpdog v0.1.7 h1:Ew1rMa0ji8QjgUtiyj6pbD+mu/9A+v1LSNmvIGoedL8=
 github.com/bool64/httpdog v0.1.7/go.mod h1:sLi+Wwxtm+D3zMHeh8OdpKlv5v7Ir2MteKf7zV9Kye4=
 github.com/bool64/httptestbench v0.1.1 h1:08112fXc5F1XuTWLdC9lPGB4FSWNACoeUWTeoR0a2qA=
