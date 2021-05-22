@@ -38,9 +38,7 @@ endif
 # Add your custom targets here.
 
 ## Run tests
-test: test-unit
-
-
+test: test-unit test-integration
 
 ## Generate local API JS client
 js-client:
