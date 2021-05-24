@@ -1,6 +1,7 @@
 Feature: Hello, World!
 
   Scenario: Happy path.
+    Given there are no rows in table "greetings"
     When I request HTTP endpoint with method "GET" and URI "/hello?name=Jane&locale=en-US"
     And I concurrently request idempotent HTTP endpoint
     Then I should have response with body
@@ -8,8 +9,12 @@ Feature: Hello, World!
     {"message":"Hello, Jane!"}
     """
     And I should have response with status "OK"
+    And these rows are available in table "greetings":
+      | message      |
+      | Hello, Jane! |
 
   Scenario: Unhappy path.
+    Given there are no rows in table "greetings"
     When I request HTTP endpoint with method "GET" and URI "/hello?name=Jane&locale=zz-ZZ"
     And I concurrently request idempotent HTTP endpoint
     Then I should have response with body
@@ -20,8 +25,10 @@ Feature: Hello, World!
     }
     """
     And I should have response with status "Bad Request"
+    And no rows are available in table "greetings"
 
   Scenario: Buggy path.
+    Given there are no rows in table "greetings"
     When I request HTTP endpoint with method "GET" and URI "/hello?name=Bug&locale=ru-RU"
     And I concurrently request idempotent HTTP endpoint
     Then I should have response with body
@@ -32,3 +39,4 @@ Feature: Hello, World!
     }
     """
     And I should have response with status "Internal Server Error"
+    And no rows are available in table "greetings"
