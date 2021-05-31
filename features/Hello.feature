@@ -9,7 +9,7 @@ Feature: Hello, World!
     {"message":"Hello, Jane!"}
     """
     And I should have response with status "OK"
-    And these rows are available in table "greetings":
+    And only these rows are available in table "greetings":
       | message      |
       | Hello, Jane! |
 

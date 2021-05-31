@@ -8,6 +8,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/bool64/brick-template/internal/domain/greeting"
 	"github.com/bool64/brick-template/internal/infra"
 	"github.com/bool64/brick-template/internal/infra/nethttp"
 	"github.com/bool64/brick-template/internal/infra/service"
@@ -24,6 +25,8 @@ func Benchmark_hello(b *testing.B) {
 	cfg.ShutdownTimeout = time.Second
 	l, err := infra.NewServiceLocator(cfg)
 	require.NoError(b, err)
+
+	l.GreetingMakerProvider = &greeting.SimpleMaker{}
 
 	r := nethttp.NewRouter(l)
 

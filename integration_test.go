@@ -1,6 +1,8 @@
 package main_test
 
 import (
+	"testing"
+
 	"github.com/bool64/brick-template/internal/infra"
 	"github.com/bool64/brick-template/internal/infra/nethttp"
 	"github.com/bool64/brick-template/internal/infra/service"
@@ -11,7 +13,6 @@ import (
 	"github.com/bool64/shared"
 	"github.com/cucumber/godog"
 	"github.com/stretchr/testify/require"
-	"testing"
 )
 
 func TestFeatures(t *testing.T) {
