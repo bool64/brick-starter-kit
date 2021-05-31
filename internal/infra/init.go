@@ -1,6 +1,8 @@
 package infra
 
 import (
+	"context"
+
 	"github.com/bool64/brick"
 	"github.com/bool64/brick-template/internal/domain/greeting"
 	"github.com/bool64/brick-template/internal/infra/schema"
@@ -13,15 +15,21 @@ import (
 )
 
 // NewServiceLocator creates application service locator.
-func NewServiceLocator(cfg service.Config) (*service.Locator, error) {
-	bl, err := brick.NewBaseLocator(cfg.BaseConfig)
+func NewServiceLocator(cfg service.Config) (loc *service.Locator, err error) {
+	l := &service.Locator{}
+
+	defer func() {
+		if err != nil && l != nil && l.LoggerProvider != nil {
+			l.CtxdLogger().Error(context.Background(), err.Error())
+		}
+	}()
+
+	l.BaseLocator, err = brick.NewBaseLocator(cfg.BaseConfig)
 	if err != nil {
 		return nil, err
 	}
 
-	l := &service.Locator{BaseLocator: bl}
-
-	if err = jaeger.Setup(cfg.Jaeger, cfg.ServiceName, bl); err != nil {
+	if err = jaeger.Setup(cfg.Jaeger, cfg.ServiceName, l.BaseLocator); err != nil {
 		return nil, err
 	}
 
