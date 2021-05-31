@@ -90,8 +90,8 @@ github.com/bool64/dev v0.1.27/go.mod h1:cTHiTDNc8EewrQPy3p1obNilpMpdmlUesDkFTF2z
 github.com/bool64/dev v0.1.28/go.mod h1:cTHiTDNc8EewrQPy3p1obNilpMpdmlUesDkFTF2zRWU=
 github.com/bool64/dev v0.1.30/go.mod h1:cTHiTDNc8EewrQPy3p1obNilpMpdmlUesDkFTF2zRWU=
 github.com/bool64/dev v0.1.32/go.mod h1:cTHiTDNc8EewrQPy3p1obNilpMpdmlUesDkFTF2zRWU=
-github.com/bool64/dev v0.1.33-0.20210531151007-ae94a8cc53ec h1:WZpFor23IxzQS2IgFsym2FrWtfLW6xmcCfgMmrMhqnM=
-github.com/bool64/dev v0.1.33-0.20210531151007-ae94a8cc53ec/go.mod h1:cTHiTDNc8EewrQPy3p1obNilpMpdmlUesDkFTF2zRWU=
+github.com/bool64/dev v0.1.33 h1:/uq/AvZurOfrgUkH9yLxWCHhNtccAY/gIIAceTKNQsc=
+github.com/bool64/dev v0.1.33/go.mod h1:cTHiTDNc8EewrQPy3p1obNilpMpdmlUesDkFTF2zRWU=
 github.com/bool64/httpdog v0.1.8 h1:tk2lDsC+WGI2MhJO7BdFgeLrE4gH4KllmMMCsYOBDhc=
 github.com/bool64/httpdog v0.1.8/go.mod h1:5MhF+BTNiYvNE464JW+zaZ8wzxg0tmDq4It8tftEFug=
 github.com/bool64/httptestbench v0.1.1 h1:08112fXc5F1XuTWLdC9lPGB4FSWNACoeUWTeoR0a2qA=

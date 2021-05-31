@@ -7,7 +7,7 @@ require (
 	github.com/bool64/brick v0.0.3-0.20210531145600-074b9e2586e5
 	github.com/bool64/ctxd v0.1.5
 	github.com/bool64/dbdog v0.2.0
-	github.com/bool64/dev v0.1.33-0.20210531151007-ae94a8cc53ec
+	github.com/bool64/dev v0.1.33
 	github.com/bool64/httpdog v0.1.8
 	github.com/bool64/httptestbench v0.1.1
 	github.com/bool64/shared v0.1.3
