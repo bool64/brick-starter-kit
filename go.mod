@@ -4,7 +4,7 @@ go 1.16
 
 require (
 	contrib.go.opencensus.io/exporter/jaeger v0.2.1
-	github.com/bool64/brick v0.0.3-0.20210531200022-6f375a8b8538
+	github.com/bool64/brick v0.0.3
 	github.com/bool64/ctxd v0.1.5
 	github.com/bool64/dbdog v0.2.0
 	github.com/bool64/dev v0.1.33
