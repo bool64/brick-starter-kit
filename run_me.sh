@@ -19,11 +19,6 @@ find . -name .git -prune -o -type f -not -name run_me.sh -print0 | xargs -0 perl
 find . -name .git -prune -o -type f -not -name run_me.sh -print0 | xargs -0 perl -i -pe "s|BRICK_STARTER_KIT|$project_cap|g"
 find . -name .git -prune -o -type f -not -name run_me.sh -print0 | xargs -0 perl -i -pe "s|Brick Starter Kit|$project_words|g"
 
-mv ./resources/diagrams/brick-starter-kit_components.puml ./resources/diagrams/"$project_name"_components.puml
-mv ./resources/diagrams/brick-starter-kit_relations.puml ./resources/diagrams/"$project_name"_relations.puml
-mv ./resources/diagrams/brick-starter-kit_system.puml ./resources/diagrams/"$project_name"_system.puml
-git add ./resources/diagrams
-
 echo "## Removing this script"
 rm ./run_me.sh
 
