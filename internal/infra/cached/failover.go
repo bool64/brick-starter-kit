@@ -1,3 +1,4 @@
+// Package cached provides caching layer for domain services.
 package cached
 
 import (
