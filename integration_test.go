@@ -45,7 +45,9 @@ func BenchmarkGreetings(b *testing.B) {
 	require.NoError(b, config.Load("", &cfg, config.WithOptionalEnvFiles(".env.integration-test")))
 
 	sl, err := infra.NewServiceLocator(cfg)
-	require.NoError(b, err)
+	if err != nil {
+		b.Skip(err)
+	}
 
 	router := nethttp.NewRouter(sl)
 
@@ -54,7 +56,7 @@ func BenchmarkGreetings(b *testing.B) {
 
 	httptestbench.RoundTrip(b, 50,
 		func(i int, req *fasthttp.Request) {
-			req.SetRequestURI(srv.URL + "/hello?locale=en-US&name=user" + strconv.Itoa((i^12345)%100))
+			req.SetRequestURI(srv.URL + "/hello?locale=en-US&name=user" + strconv.Itoa(((i/10)^12345)%100))
 		},
 		func(i int, resp *fasthttp.Response) bool {
 			return resp.StatusCode() == http.StatusOK

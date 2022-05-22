@@ -9,4 +9,5 @@ type Locator struct {
 	*brick.BaseLocator
 
 	GreetingMakerProvider
+	GreetingClearerProvider
 }

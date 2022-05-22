@@ -2,9 +2,11 @@ package infra
 
 import (
 	"context"
+	"time"
 
 	"github.com/bool64/brick"
 	"github.com/bool64/brick-starter-kit/internal/domain/greeting"
+	"github.com/bool64/brick-starter-kit/internal/infra/cached"
 	"github.com/bool64/brick-starter-kit/internal/infra/schema"
 	"github.com/bool64/brick-starter-kit/internal/infra/service"
 	"github.com/bool64/brick-starter-kit/internal/infra/storage"
@@ -41,9 +43,19 @@ func NewServiceLocator(cfg service.Config) (loc *service.Locator, err error) {
 		return nil, err
 	}
 
-	l.GreetingMakerProvider = &storage.GreetingSaver{
+	gs := &storage.GreetingSaver{
 		Upstream: &greeting.SimpleMaker{},
 		Storage:  l.Storage,
+	}
+
+	l.GreetingMakerProvider = gs
+	l.GreetingClearerProvider = gs
+
+	greetingsCache := brick.MakeCacheOf[string](l.BaseLocator, "greetings", 3*time.Minute)
+	l.GreetingMakerProvider = cached.NewGreetingMaker(l.GreetingMaker(), greetingsCache)
+
+	if err := l.TransferCache(context.Background()); err != nil {
+		l.CtxdLogger().Warn(context.Background(), "failed to transfer cache", "error", err)
 	}
 
 	return l, nil
@@ -60,7 +72,7 @@ func setupStorage(l *service.Locator, cfg database.Config) error {
 		return err
 	}
 
-	l.Storage, err = database.SetupStorage(cfg, l.CtxdLogger(), "mysql", conn, storage.Migrations)
+	l.Storage, err = database.SetupStorage(cfg, l.CtxdLogger(), l.StatsTracker(), "mysql", conn, storage.Migrations)
 	if err != nil {
 		return err
 	}
