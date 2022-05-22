@@ -4,16 +4,17 @@ go 1.18
 
 require (
 	github.com/bool64/brick v0.0.8
-	github.com/bool64/ctxd v1.1.2
-	github.com/bool64/dev v0.2.9
-	github.com/bool64/httptestbench v0.1.3
+	github.com/bool64/ctxd v1.1.3
+	github.com/bool64/dev v0.2.10
+	github.com/bool64/httptestbench v0.1.4
 	github.com/bool64/sqluct v0.1.9
 	github.com/bool64/stats v0.2.2
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/godogx/dbsteps v0.1.2
 	github.com/stretchr/testify v1.7.1
-	github.com/swaggest/rest v0.2.23
+	github.com/swaggest/rest v0.2.27
 	github.com/swaggest/usecase v1.1.2
+	github.com/valyala/fasthttp v1.36.0
 	github.com/vearutop/statigz v1.1.5
 )
 
@@ -52,7 +53,7 @@ require (
 	github.com/jmoiron/sqlx v1.3.4 // indirect
 	github.com/joho/godotenv v1.4.0 // indirect
 	github.com/kelseyhightower/envconfig v1.4.0 // indirect
-	github.com/klauspost/compress v1.15.1 // indirect
+	github.com/klauspost/compress v1.15.2 // indirect
 	github.com/lann/builder v0.0.0-20180802200727-47ae307949d0 // indirect
 	github.com/lann/ps v0.0.0-20150810152359-62de8c46ede0 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.1 // indirect
@@ -69,13 +70,12 @@ require (
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/swaggest/assertjson v1.6.8 // indirect
 	github.com/swaggest/form/v5 v5.0.1 // indirect
-	github.com/swaggest/jsonschema-go v0.3.25 // indirect
-	github.com/swaggest/openapi-go v0.2.15 // indirect
-	github.com/swaggest/refl v1.0.1 // indirect
+	github.com/swaggest/jsonschema-go v0.3.34 // indirect
+	github.com/swaggest/openapi-go v0.2.18 // indirect
+	github.com/swaggest/refl v1.0.2 // indirect
 	github.com/swaggest/swgui v1.4.4 // indirect
 	github.com/uber/jaeger-client-go v2.25.0+incompatible // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
-	github.com/valyala/fasthttp v1.34.0 // indirect
 	github.com/vearutop/dynhist-go v1.1.0 // indirect
 	github.com/vearutop/gooselite v0.1.1 // indirect
 	github.com/yosuke-furukawa/json5 v0.1.2-0.20201207051438-cf7bb3f354ff // indirect
