@@ -2,13 +2,11 @@ package storage
 
 import (
 	"context"
-	"errors"
 	"time"
 
 	"github.com/bool64/brick-starter-kit/internal/domain/greeting"
 	"github.com/bool64/ctxd"
 	"github.com/bool64/sqluct"
-	"github.com/go-sql-driver/mysql"
 )
 
 // GreetingSaver saves greetings to database.
@@ -37,23 +35,33 @@ func (gs *GreetingSaver) Hello(ctx context.Context, params greeting.Params) (str
 	q := gs.Storage.InsertStmt(GreetingsTable, GreetingRow{
 		Message:   g,
 		CreatedAt: time.Now(),
-	})
+	}).Options("IGNORE")
 
 	if _, err = gs.Storage.Exec(ctx, q); err != nil {
-		var mySQLError *mysql.MySQLError
-
-		if errors.As(err, &mySQLError) && mySQLError.Number == 1062 {
-			// Duplicate entry error.
-			return g, nil
-		}
-
 		return "", ctxd.WrapError(ctx, err, "failed to store greeting")
 	}
 
 	return g, nil
 }
 
+// ClearGreetings removes all entries.
+func (gs *GreetingSaver) ClearGreetings(ctx context.Context) (int, error) {
+	res, err := gs.Storage.DeleteStmt(GreetingsTable).ExecContext(ctx)
+	if err != nil {
+		return 0, err
+	}
+
+	aff, err := res.RowsAffected()
+
+	return int(aff), err
+}
+
 // GreetingMaker implements service provider.
 func (gs *GreetingSaver) GreetingMaker() greeting.Maker {
+	return gs
+}
+
+// GreetingClearer implements service provider.
+func (gs *GreetingSaver) GreetingClearer() greeting.Clearer {
 	return gs
 }

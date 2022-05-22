@@ -6,3 +6,6 @@
 /bin
 /*.tar.gz
 /*.zip
+/.env
+/resources/static/openapi.json
+/data
