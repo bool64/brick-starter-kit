@@ -7,12 +7,14 @@ import (
 	"github.com/bool64/brick-starter-kit/internal/domain/greeting"
 	"github.com/bool64/ctxd"
 	"github.com/bool64/sqluct"
+	"github.com/bool64/stats"
 )
 
 // GreetingSaver saves greetings to database.
 type GreetingSaver struct {
 	Upstream greeting.Maker
 	Storage  *sqluct.Storage
+	Stats    stats.Tracker
 }
 
 // GreetingsTable is the name of the table.
@@ -35,7 +37,7 @@ func (gs *GreetingSaver) Hello(ctx context.Context, params greeting.Params) (str
 	q := gs.Storage.InsertStmt(GreetingsTable, GreetingRow{
 		Message:   g,
 		CreatedAt: time.Now(),
-	}).Options("IGNORE")
+	}, sqluct.InsertIgnore)
 
 	if _, err = gs.Storage.Exec(ctx, q); err != nil {
 		return "", ctxd.WrapError(ctx, err, "failed to store greeting")
@@ -58,10 +60,18 @@ func (gs *GreetingSaver) ClearGreetings(ctx context.Context) (int, error) {
 
 // GreetingMaker implements service provider.
 func (gs *GreetingSaver) GreetingMaker() greeting.Maker {
+	if gs == nil {
+		panic("empty GreetingSaver")
+	}
+
 	return gs
 }
 
 // GreetingClearer implements service provider.
 func (gs *GreetingSaver) GreetingClearer() greeting.Clearer {
+	if gs == nil {
+		panic("empty GreetingSaver")
+	}
+
 	return gs
 }
