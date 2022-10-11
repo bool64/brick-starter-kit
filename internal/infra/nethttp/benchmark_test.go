@@ -1,7 +1,7 @@
 package nethttp_test
 
 import (
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"net/http/httptest"
@@ -18,11 +18,11 @@ import (
 )
 
 func Benchmark_hello(b *testing.B) {
-	log.SetOutput(ioutil.Discard)
+	log.SetOutput(io.Discard)
 
 	cfg := service.Config{}
 	cfg.Initialized = true
-	cfg.Log.Output = ioutil.Discard
+	cfg.Log.Output = io.Discard
 	cfg.ShutdownTimeout = time.Second
 	l, err := infra.NewServiceLocator(cfg)
 	require.NoError(b, err)

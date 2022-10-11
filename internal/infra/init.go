@@ -2,6 +2,7 @@ package infra
 
 import (
 	"context"
+	"io/fs"
 	"time"
 
 	"github.com/bool64/brick"
@@ -10,10 +11,13 @@ import (
 	"github.com/bool64/brick-starter-kit/internal/infra/schema"
 	"github.com/bool64/brick-starter-kit/internal/infra/service"
 	"github.com/bool64/brick-starter-kit/internal/infra/storage"
+	"github.com/bool64/brick-starter-kit/internal/infra/storage/mysql"
+	"github.com/bool64/brick-starter-kit/internal/infra/storage/sqlite"
 	"github.com/bool64/brick/database"
 	"github.com/bool64/brick/jaeger"
-	"github.com/go-sql-driver/mysql"
+	_ "github.com/go-sql-driver/mysql" // MySQL driver.
 	"github.com/swaggest/rest/response/gzip"
+	_ "modernc.org/sqlite" // SQLite3 driver.
 )
 
 // NewServiceLocator creates application service locator.
@@ -46,6 +50,7 @@ func NewServiceLocator(cfg service.Config) (loc *service.Locator, err error) {
 	gs := &storage.GreetingSaver{
 		Upstream: &greeting.SimpleMaker{},
 		Storage:  l.Storage,
+		Stats:    l.StatsTracker(),
 	}
 
 	l.GreetingMakerProvider = gs
@@ -62,17 +67,23 @@ func NewServiceLocator(cfg service.Config) (loc *service.Locator, err error) {
 }
 
 func setupStorage(l *service.Locator, cfg database.Config) error {
-	c, err := mysql.ParseDSN(cfg.DSN)
-	if err != nil {
-		return err
+	if cfg.DriverName == "" {
+		cfg.DriverName = "mysql"
 	}
 
-	conn, err := mysql.NewConnector(c)
-	if err != nil {
-		return err
+	var (
+		err        error
+		migrations fs.FS
+	)
+
+	switch cfg.DriverName {
+	case "sqlite":
+		migrations = sqlite.Migrations
+	case "mysql":
+		migrations = mysql.Migrations
 	}
 
-	l.Storage, err = database.SetupStorage(cfg, l.CtxdLogger(), l.StatsTracker(), "mysql", conn, storage.Migrations)
+	l.Storage, err = database.SetupStorageDSN(cfg, l.CtxdLogger(), l.StatsTracker(), migrations)
 	if err != nil {
 		return err
 	}

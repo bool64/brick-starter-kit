@@ -1,3 +1,4 @@
+// Package main provides brick-starter-kit web service.
 package main
 
 import (
