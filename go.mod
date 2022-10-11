@@ -76,7 +76,7 @@ require (
 	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/shurcooL/httpgzip v0.0.0-20190720172056-320755c1c1b0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
-	github.com/swaggest/assertjson v1.7.0 // indirect
+	github.com/swaggest/assertjson v1.6.8 // indirect
 	github.com/swaggest/form/v5 v5.0.1 // indirect
 	github.com/swaggest/jsonschema-go v0.3.40 // indirect
 	github.com/swaggest/openapi-go v0.2.22 // indirect
