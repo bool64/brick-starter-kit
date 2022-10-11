@@ -1,4 +1,4 @@
-// Package main provides cache-story web service.
+// Package main provides brick-starter-kit web service.
 package main
 
 import (
