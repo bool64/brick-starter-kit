@@ -16,7 +16,6 @@ require (
 	github.com/swaggest/rest v0.2.32
 	github.com/swaggest/usecase v1.2.0
 	github.com/valyala/fasthttp v1.40.0
-	github.com/vearutop/cache-story v1.1.3
 	github.com/vearutop/statigz v1.1.8
 	modernc.org/sqlite v1.19.1
 )
@@ -40,6 +39,7 @@ require (
 	github.com/cucumber/godog v0.12.5 // indirect
 	github.com/cucumber/messages-go/v16 v16.0.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/fsnotify/fsnotify v1.5.4 // indirect
 	github.com/go-chi/chi/v5 v5.0.7 // indirect
 	github.com/go-kit/log v0.2.1 // indirect
 	github.com/go-logfmt/logfmt v0.5.1 // indirect
@@ -63,6 +63,7 @@ require (
 	github.com/lann/ps v0.0.0-20150810152359-62de8c46ede0 // indirect
 	github.com/mattn/go-isatty v0.0.16 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.2 // indirect
+	github.com/onsi/ginkgo v1.16.5 // indirect
 	github.com/onsi/gomega v1.13.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
@@ -76,7 +77,7 @@ require (
 	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/shurcooL/httpgzip v0.0.0-20190720172056-320755c1c1b0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
-	github.com/swaggest/assertjson v1.6.8 // indirect
+	github.com/swaggest/assertjson v1.7.0 // indirect
 	github.com/swaggest/form/v5 v5.0.1 // indirect
 	github.com/swaggest/jsonschema-go v0.3.40 // indirect
 	github.com/swaggest/openapi-go v0.2.22 // indirect
